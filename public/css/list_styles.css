@@ -1,0 +1,57 @@
+body{
+  /* background-color: #f0f0f0; */
+}
+table, td, th {
+  border: 1px solid #ddd;
+  text-align: left;
+  background-color: #f0f0f0;
+
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+
+}
+
+th, td {
+  padding: 15px;
+}
+
+.form-inline{
+  margin: 20px 0;
+  position: relative;
+}
+
+form.form-inline button:hover {
+  background: #0b7dda;
+
+
+}
+
+#search{
+  margin: 10px 0;
+  background-color: #f0f0f0;
+}
+
+
+.table-data{
+  width: 80%;
+  margin: 5% auto 5% auto;
+  position: relative;
+}
+
+
+
+.refresh {
+  margin: 20px 15px 10px 0;
+}
+
+.search {
+  margin: 0 2px;
+}
+.homebtn {
+  margin: 20px auto;
+  position: absolute;
+  right:0px;
+}

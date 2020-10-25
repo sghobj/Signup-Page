@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Users List</title>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- Bootstrap core CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <!-- Google Fonts -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap">
+  <!-- local style sheet -->
+  <link rel="stylesheet" href="css/list_styles.css" />
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+
+</head>
+<body>
+
+    <div class="table-data">
+<h2>Data Saved in MySQL Database</h2>
+<!-- <form class="form-inline" action="action_page.php"> -->
+  <input id="search" type="text" placeholder="Search.." name="search">
+  <!-- <button type="submit" class="btn btn-sm btn-info search"><i class="fa fa-search"></i></button> -->
+<!-- </form> -->
+
+    <table  id="table" border="1">
+      <thead>
+        <tr>
+            <th>User ID</th>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Matrix ID</th>
+            <th>Email</th>
+            <th >Birth Date</th>
+            <th>Birth Place</th>
+            <th>Street</th>
+            <th>City</th>
+            <th>Country</th>
+        </tr>
+      </thead>
+        <tbody>
+          <%
+          if(userData.length!=0){
+          var i=1;
+          userData.forEach(function(data){
+          %>
+          <tr>
+              <td><%=data.user_id%></td>
+              <td><%=data.firstname %></td>
+              <td><%=data.lastname %></td>
+              <td><%=data.matrixID %></td>
+              <td><%=data.email %></td>
+              <td ><%= convert(data.birthdate) %></td>
+              <td><%=data.birthPlace %></td>
+              <td><%=data.street %></td>
+              <td><%=data.city %></td>
+              <td><%=data.country %></td>
+          </tr>
+          <%  i++; }) %>
+          <% } else{ %>
+              <tr>
+                  <td colspan="7">No Data Found</td>
+              </tr>
+          <% } %>
+          </tbody>
+    </table>
+
+      <form class="homeform" action="/" method="get">
+        <button class="btn btn-info homebtn" type="submit" name="homebtn" action="/">Go Back to <i class="fas fa-home"></i></button>
+      </form>
+
+    </div>
+
+
+    <!-- jQuery CDN --> <!-- jQuery should be added before index.js so that when $ is called in index.js, it can find it -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+
+        <!-- To handele the search function as keyboard input is changed -->
+        <!-- JavaScript  -->
+        <script>
+          $('#search').on('keyup', function(e) {
+              if ('' != this.value) {
+                  var reg = new RegExp(this.value, 'i'); // case-insesitive
+
+                  $('#table tbody').find('tr').each(function() {
+                      var $me = $(this);
+                      //this sets the search to go through all columns and not a specific one
+                      if (!$me.children('td').text().match(reg)) {
+                            $me.hide();
+                      } else {
+                          $me.show();
+                      }
+                  });
+              } else {
+                  $('#table tbody').find('tr').show();
+              }
+          });
+        </script>
+
+        <script type="text/javascript">
+        $(".homebtn").click(handleClick);
+
+        function handleClick() {
+          alert("you pressed home button");
+      </script>
+
+</body>
+</html>
