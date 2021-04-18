@@ -37,16 +37,16 @@ app.get("/", function(req, res) {
 //Post Requests
 app.post("/", function(req, res) {
   const firstName = req.body.inputFN;
-  const lastName = req.body.inputLN;;
+  const lastName = req.body.inputLN;
   const emailaddress = req.body.inputEmail;
-  const matrixId = req.body.matrixId;
+  //const matrixId = req.body.matrixId;
   const street = req.body.street;
   const city = req.body.city;
   const country = req.body.country;
   const birthdate = req.body.inputdate;
   const birthplace = req.body.inputbirthPlace;
 
-  var sql_users = "INSERT INTO users (firstname, lastname, matrixID, email) VALUES ('" + firstName + "', '" + lastName + "', '" + matrixId + "', '" + emailaddress + "' )";
+  var sql_users = "INSERT INTO users (firstname, lastname,  email) VALUES ('" + firstName + "', '" + lastName + "', '"  + "', '" + emailaddress + "' )";
   // var last_id = "SELECT LAST_INSERT_ID() FROM customers";
   var sql_address = "INSERT INTO address (street, city, country, userID) VALUES ('" + street + "', '" + city + "', '" + country + "', LAST_INSERT_ID())";
   var sql_dob = "INSERT INTO dob (userID, birthdate, birthplace) VALUES (LAST_INSERT_ID(),'" + birthdate + "', '" + birthplace + "')";
@@ -64,6 +64,7 @@ app.post("/", function(req, res) {
     console.log("1 record inserted into dob");
   });
 
+  res.sendFile(__dirname + "/success.html");
 });
 
 
@@ -81,9 +82,10 @@ app.get('/user-list', function(req, res, next) {
   });
 
 
-  app.get("/success", function(req, res) {
-    res.redirect("/user-list")
-  });
+  // app.get('/success', function(req, res) {
+  //   res.redirect('/user-list');
+  //   //res.sendFile(__dirname + "/success.html");
+  // });
 
 
   //Change date format function
